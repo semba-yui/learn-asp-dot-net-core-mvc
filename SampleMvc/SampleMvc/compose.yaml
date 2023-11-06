@@ -1,0 +1,21 @@
+﻿services:
+  mssql:
+    # build:
+      # context: ./docker/mssqlserver/
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    # platform: linux/x86_64
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=yourStrong@Password # パスワードポリシー(https://docs.microsoft.com/ja-jp/sql/relational-databases/security/password-policy?view=sql-server-ver15)
+      - MSSQL_PID=Express # SQL Serverのエディションまたはプロダクトキー
+      - MSSQL_LCID=1041 # ロケールID 日本語 (https://www.ryadel.com/en/microsoft-windows-lcid-list-decimal-and-hex-all-locale-codes-ids/)
+      - MSSQL_COLLATION=Japanese_CI_AS # 照合順
+      - TZ="Asia/Tokyo" # タイムゾーン設定
+    volumes:
+      - ./docker/mssqlserver/initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/mssqlserver/data:/var/opt/mssql/data
+      - ./docker/mssqlserver/log:/var/opt/mssql/log
+      - ./docker/mssqlserver/secrets:/var/opt/mssql/sec

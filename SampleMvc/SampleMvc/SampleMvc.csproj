@@ -8,4 +8,20 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <None Remove="docker\" />
+    <None Remove="docker\mssqlserver\" />
+    <None Remove="docker\mssqlserver\initdb.d\" />
+    <None Remove="docker\mssqlserver\data\" />
+    <None Remove="docker\mssqlserver\log\" />
+    <None Remove="docker\mssqlserver\secrets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="docker\" />
+    <Folder Include="docker\mssqlserver\" />
+    <Folder Include="docker\mssqlserver\initdb.d\" />
+    <Folder Include="docker\mssqlserver\data\" />
+    <Folder Include="docker\mssqlserver\log\" />
+    <Folder Include="docker\mssqlserver\secrets\" />
+  </ItemGroup>
 </Project>
