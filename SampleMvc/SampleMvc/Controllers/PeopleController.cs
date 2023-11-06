@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SampleMvc.Models;
 
@@ -21,9 +16,9 @@ namespace SampleMvc.Controllers
         // GET: People
         public async Task<IActionResult> Index()
         {
-              return _context.People != null ? 
-                          View(await _context.People.ToListAsync()) :
-                          Problem("Entity set 'MvcdbContext.People'  is null.");
+            return _context.People != null ?
+                        View(await _context.People.ToListAsync()) :
+                        Problem("Entity set 'MvcdbContext.People'  is null.");
         }
 
         // GET: People/Details/5
@@ -149,14 +144,14 @@ namespace SampleMvc.Controllers
             {
                 _context.People.Remove(person);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PersonExists(int id)
         {
-          return (_context.People?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.People?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

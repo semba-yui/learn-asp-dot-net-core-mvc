@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SampleMvc.Models;
+﻿namespace SampleMvc.Models;
 
 public partial class Person
 {
