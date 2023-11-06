@@ -34,8 +34,11 @@ namespace SampleMvc.Controllers
         // GET: People/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            // 値が指定されていなかったり、文字列で数値に変換できない場合は null がバインドされる
             if (id == null || _context.People == null)
             {
+                // ログイン画面など、トップページにリダイレクトさせたい場合
+                // return Redirect("/");
                 return NotFound();
             }
 
