@@ -13,7 +13,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// ローカルで実施のため HTTPS 不要
+// app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
