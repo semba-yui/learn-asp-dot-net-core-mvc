@@ -16,8 +16,18 @@ namespace SampleMvc.Controllers
         // GET: People
         public async Task<IActionResult> Index()
         {
-            return _context.People != null ?
-                        View(await _context.People.ToListAsync()) :
+            return
+                // Personテーブルにアクセス
+                _context.People != null ?
+                        // テーブル内のデータを全てリスト化
+                        // 全てのデータを渡しているため、データが多い場合は Take メソッドで取得する件数を絞ったり、
+                        // where メソッドで指定したりする。
+                        // View(await _context.People.ToListAsync()) :
+                        // 先頭100件を指定
+                        // Paging を実装する場合は、先頭行を Skip する Skip メソッドと組み合わせることで実装できる。
+                        View(await _context.People.Take(100).ToListAsync()) :
+                        // 同期処理の場合は以下のように実装。
+                        //View(_context.People.ToList()) :
                         Problem("Entity set 'MvcdbContext.People'  is null.");
         }
 
