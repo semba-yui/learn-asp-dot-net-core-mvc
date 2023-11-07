@@ -65,8 +65,15 @@ namespace SampleMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Age")] Person person)
         {
+            // Modelクラスで設定している制限に引っかかる場合は valid が false になる
             if (ModelState.IsValid)
             {
+                // ビジネスロジックなどで条件をチェックする場合
+                if (person.Age < 20)
+                {
+                    ModelState.AddModelError("Age", "二十歳未満です。");
+                    return View(person);
+                }
                 _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
